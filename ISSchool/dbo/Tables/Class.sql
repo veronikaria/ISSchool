@@ -1,8 +1,9 @@
 ﻿CREATE TABLE Class
 (
 	Code NVARCHAR(4) NOT NULL,
-	TeacherId INT NOT NULL,
+	HeadId INT NOT NULL,
 
 	CONSTRAINT PK_Class PRIMARY KEY (Code),
-	CONSTRAINT FK_Class_Teacher FOREIGN KEY (TeacherId) REFERENCES Teacher(Id)
+	CONSTRAINT FK_Class_Teacher FOREIGN KEY (HeadId) REFERENCES Teacher(Id),
+	CONSTRAINT UC_Class UNIQUE (HeadId)
 )

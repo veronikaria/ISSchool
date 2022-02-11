@@ -69,4 +69,7 @@
     <Build Include="dbo\Tables\Marks.sql" />
     <Build Include="dbo\Tables\Schedule.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="dbo\inserts.sql" />
+  </ItemGroup>
 </Project>
