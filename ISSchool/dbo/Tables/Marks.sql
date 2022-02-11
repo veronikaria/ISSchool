@@ -9,7 +9,7 @@
 	CONSTRAINT PK_Marks PRIMARY KEY (Id),
 	CONSTRAINT FK_Marks_Pupil FOREIGN KEY (PupilId) REFERENCES Pupil(Id),
 	CONSTRAINT FK_Marks_Subject FOREIGN KEY (SubjectId) REFERENCES Subject(Id),
-	CONSTRAINT Check_Marks CHECK(Mark>=1 AND Mark<=12),
+	CONSTRAINT Check_Marks CHECK(Mark>=1 AND Mark<=5),
 	CONSTRAINT Check_Quarter CHECK(Quarter>=1 AND Quarter<=4)
 
 )
