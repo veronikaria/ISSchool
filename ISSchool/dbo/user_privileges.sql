@@ -251,8 +251,7 @@ GO
 
 
 
-
-
+-- Проверка работы триггера DeleteDeductedPupil
 -- удаление преподавателя Федишин Петро Іванович
 EXECUTE AS USER='HeadTeacher'
 DELETE FROM Teacher
@@ -271,7 +270,159 @@ GO
 
 
 
+-- Проверка работы триггера DeleteDeductedPupil
+-- удаление ученика Гаврилов Андрій, что учится в 7-А классе
+EXECUTE AS USER='HeadTeacher'
+DELETE FROM Pupil
+WHERE Lastname=N'Гаврилов'
+AND Firstname=N'Андрій'
+AND ClassCode=N'7-А'
+REVERT
+GO
+
+-- таблица после удаления
+EXECUTE AS USER='HeadTeacher'
+SELECT * FROM Pupil
+REVERT
+GO
 
 
+
+-- внесение изменений завучем об ученике Рибак Денис (ученика перевели из 8-Б класса в 8-А)
+EXECUTE AS USER='HeadTeacher'
+UPDATE Pupil
+SET ClassCode=N'8-А'
+WHERE Lastname=N'Рибак'
+AND Firstname=N'Денис'
+AND ClassCode=N'8-Б'
+REVERT
+GO
+
+
+-- таблица после перемен
+EXECUTE AS USER='HeadTeacher'
+SELECT * FROM Pupil
+REVERT
+GO
+
+
+-- внесение изменений зачем об преподавателе Малинов Ігор Ігорович, закрепить за ним кабинет 24
+EXECUTE AS USER='HeadTeacher'
+UPDATE Teacher
+SET CabinetId=24
+WHERE Lastname=N'Малинов'
+AND Firstname=N'Ігор'
+AND Middlename=N'Ігорович'
+REVERT
+GO
+
+
+-- таблица после перемен
+EXECUTE AS USER='HeadTeacher'
+SELECT * FROM Teacher
+REVERT
+GO
+
+
+
+-- изменить оценку в 1 четверти по предмету Алгебра на 5 у ученика Яблонський Руслан что учится в 7-А классе
+
+-- перед переменами
+EXECUTE AS USER='HeadTeacher'
+SELECT * FROM Marks
+WHERE Quarter=1
+AND PupilId=(SELECT Id FROM Pupil WHERE Lastname=N'Яблонський' AND Firstname=N'Руслан' AND ClassCode=N'7-А')
+AND SubjectId=(SELECT Id FROM Subject WHERE Name=N'Алгебра')
+REVERT
+GO
+
+
+EXECUTE AS USER='HeadTeacher'
+UPDATE Marks
+SET Mark=5
+WHERE SubjectId=(SELECT Id FROM Subject WHERE Name=N'Алгебра')
+AND Quarter=1
+AND PupilId=(SELECT Id FROM Pupil WHERE Lastname=N'Яблонський' AND Firstname=N'Руслан' AND ClassCode=N'7-А')
+REVERT
+GO
+
+
+-- после перемен
+EXECUTE AS USER='HeadTeacher'
+SELECT * FROM Marks
+WHERE Quarter=1
+AND PupilId=(SELECT Id FROM Pupil WHERE Lastname=N'Яблонський' AND Firstname=N'Руслан' AND ClassCode=N'7-А')
+AND SubjectId=(SELECT Id FROM Subject WHERE Name=N'Алгебра')
+REVERT
+GO
+
+
+-- внесение изменений заучем об ученике Рибак Денис (учащегося перевели из 8-Б класса в 8-А)
+EXECUTE AS USER='HeadTeacher'
+UPDATE Pupil
+SET ClassCode=N'8-А'
+WHERE Lastname=N'Рибак'
+AND Firstname=N'Денис'
+AND ClassCode=N'8-Б'
+REVERT
+GO
+
+
+-- таблица после перемен
+EXECUTE AS USER='HeadTeacher'
+SELECT * FROM Pupil
+REVERT
+GO
+
+
+-- внесение изменений зачем об преподавателе Малинов Ігор Ігорович, закрепить за ним кабинет 24
+EXECUTE AS USER='HeadTeacher'
+UPDATE Teacher
+SET CabinetId=24
+WHERE Lastname=N'Малинов'
+AND Firstname=N'Ігор'
+AND Middlename=N'Ігорович'
+REVERT
+GO
+
+
+-- таблица после перемен
+EXECUTE AS USER='HeadTeacher'
+SELECT * FROM Teacher
+REVERT
+GO
+
+
+
+-- изменить оценку в 1 четверти по предмету Алгебра на 5 у ученика Яблонський Руслан, обучающийся в 7-А классе
+
+-- перед переменами
+EXECUTE AS USER='HeadTeacher'
+SELECT * FROM Marks
+WHERE Quarter=1
+AND PupilId=(SELECT Id FROM Pupil WHERE Lastname=N'Яблонський' AND Firstname=N'Руслан' AND ClassCode=N'7-А')
+AND SubjectId=(SELECT Id FROM Subject WHERE Name=N'Алгебра')
+REVERT
+GO
+
+
+EXECUTE AS USER='HeadTeacher'
+UPDATE Marks
+SET Mark=5
+WHERE SubjectId=(SELECT Id FROM Subject WHERE Name=N'Алгебра')
+AND Quarter=1
+AND PupilId=(SELECT Id FROM Pupil WHERE Lastname=N'Яблонський' AND Firstname=N'Руслан' AND ClassCode=N'7-А')
+REVERT
+GO
+
+
+-- после перемен
+EXECUTE AS USER='HeadTeacher'
+SELECT * FROM Marks
+WHERE Quarter=1
+AND PupilId=(SELECT Id FROM Pupil WHERE Lastname=N'Яблонський' AND Firstname=N'Руслан' AND ClassCode=N'7-А')
+AND SubjectId=(SELECT Id FROM Subject WHERE Name=N'Алгебра')
+REVERT
+GO
 
 
