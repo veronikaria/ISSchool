@@ -314,3 +314,34 @@ VALUES
 (N'П''ятниця', N'7-Б', 3, 6, 3, 25),
 (N'П''ятниця', N'7-Б', 4, 1, 2, 14),
 (N'П''ятниця', N'7-Б', 5, 1, 2, 14)
+
+
+
+
+
+-- Проверка триггера ControlInsertFixedCabinetForTeacher:
+INSERT INTO Teacher
+(
+	Lastname,
+	Firstname,
+	Middlename,
+	CabinetId
+)
+VALUES
+(N'Петров', N'Григоій', N'Іванович', 14)
+
+SELECT * FROM Teacher
+
+
+
+
+
+-- Проверка триггера ControlUpdateFixedCabinetForTeacher:
+UPDATE Teacher
+SET CabinetId=25
+WHERE Id=1
+
+
+SELECT * FROM Teacher
+
+
