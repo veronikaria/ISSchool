@@ -1,0 +1,15 @@
+﻿CREATE TABLE Marks
+(
+	Id INT IDENTITY(1,1) NOT NULL,
+	PupilId INT NOT NULL,
+	SubjectId INT NOT NULL,
+	Mark INT NOT NULL,
+	Quarter INT NOT NULL,
+
+	CONSTRAINT PK_Marks PRIMARY KEY (Id),
+	CONSTRAINT FK_Marks_Pupil FOREIGN KEY (PupilId) REFERENCES Pupil(Id),
+	CONSTRAINT FK_Marks_Subject FOREIGN KEY (SubjectId) REFERENCES Subject(Id),
+	CONSTRAINT Check_Marks CHECK(Mark>=1 AND Mark<=12),
+	CONSTRAINT Check_Quarter CHECK(Quarter>=1 AND Quarter<=4)
+
+)
