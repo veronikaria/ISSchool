@@ -59,6 +59,8 @@
     <Folder Include="dbo" />
     <Folder Include="dbo\Tables" />
     <Folder Include="dbo\Triggers" />
+    <Folder Include="dbo\Procedures" />
+    <Folder Include="dbo\Functions" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Subject.sql" />
@@ -73,9 +75,25 @@
     <Build Include="dbo\Triggers\ControlUpdateFixedCabinetForTeacher.sql" />
     <Build Include="dbo\Triggers\DeleteResignedTeacher.sql" />
     <Build Include="dbo\Triggers\DeleteDeductedPupil.sql" />
+    <Build Include="dbo\Procedures\SuccessForQuarter.sql" />
+    <Build Include="dbo\Procedures\AverageMarkAllSubjects.sql" />
+    <Build Include="dbo\Procedures\AverageMarkAllClasses.sql" />
+    <Build Include="dbo\Procedures\AverageMarkInSchool.sql" />
+    <Build Include="dbo\Functions\GeneralPupilsInClass.sql" />
+    <Build Include="dbo\Functions\GeneralPupilsInSchool.sql" />
+    <Build Include="dbo\Functions\QuantityPupilsWith5Mark.sql" />
+    <Build Include="dbo\Functions\QuantityPupilsWith4And5Mark.sql" />
+    <Build Include="dbo\Functions\QuantityPupilsAtListOne3Mark.sql" />
+    <Build Include="dbo\Functions\QuantityPupilsAtListOne2Mark.sql" />
+    <Build Include="dbo\Procedures\HeaderTeacherForClasses.sql" />
+    <Build Include="dbo\Procedures\QuantityTeachersBySubject.sql" />
+    <Build Include="dbo\Functions\QuantityCabinets.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\inserts.sql" />
     <None Include="dbo\user_privileges.sql" />
+    <None Include="dbo\use_procs_funcs.sql" />
+    <None Include="dbo\check_triggers.sql" />
+    <None Include="dbo\user_actions.sql" />
   </ItemGroup>
 </Project>
